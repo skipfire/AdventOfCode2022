@@ -5,37 +5,34 @@ END;
 GO
 USE AdventOfCode2022;
 GO
-IF EXISTS (SELECT 1 FROM sys.tables WHERE [name] = 'Day2')
-BEGIN
-	DROP TABLE Day2;
-END;
 IF EXISTS (SELECT 1 FROM sys.tables WHERE [name] = 'Day2Input')
 BEGIN
 	DROP TABLE Day2Input;
 END;
 GO
-IF EXISTS (SELECT 1 FROM sys.tables WHERE [name] = 'Day2Rps')
+IF EXISTS (SELECT 1 FROM sys.tables WHERE [name] = 'Permutations')
 BEGIN
-	DROP TABLE Day2Rps;
+	DROP TABLE Permutations;
 END;
 GO
-CREATE TABLE Day2Rps ([Name] VARCHAR(10), [Value] INT, Letter1 CHAR(1), Letter2 CHAR(1), Beats VARCHAR(10));
-CREATE TABLE Day2 (Them VARCHAR(10), Me VARCHAR(10), MeValue INT, Winner VARCHAR(4) NULL, MeScore INT NULL);
-CREATE TABLE Day2Input (Them VARCHAR(10), Me VARCHAR(10));
-INSERT INTO Day2Rps VALUES ('Rock', 1, 'A', 'X', 'Scissors'), ('Paper', 2, 'B', 'Y', 'Rock'), ('Scissors', 3, 'C', 'Z', 'Paper');
---Import data
+CREATE TABLE Day2Input (Them VARCHAR(10), Result VARCHAR(10));
 BULK INSERT Day2Input FROM 'd:\GitHub\AdventOfCode2022\day-2\input.txt' WITH (FIELDTERMINATOR = ' ', ROWTERMINATOR = '\n');
 --Clean and replace to readable values
-UPDATE Day2Input SET Them = TRIM(Them), Me = TRIM(Me);
-UPDATE i
-SET Them = rps1.[Name], Me = rps2.[Name]
-FROM Day2Input i
-INNER JOIN Day2Rps rps1 ON rps1.Letter1 = i.Them
-INNER JOIN Day2Rps rps2 ON rps2.Letter2 = i.Me;
---Calculate and insert scores
-INSERT INTO Day2 (Them, Me, MeValue, MeScore)
-SELECT Them, Me, r.[Value] As MeValue, r.[Value] + CASE WHEN Them = r.Beats THEN 6 WHEN Them = Me THEN 3 ELSE 0 END As MeScore
-FROM Day2Input i
-INNER JOIN Day2Rps r ON i.Me = r.[Name];
---Get Result
-SELECT SUM(MeScore) As MeTotal FROM Day2;
+UPDATE Day2Input SET Them = TRIM(Them), Result = TRIM(Result);
+
+CREATE TABLE Permutations (Them CHAR(1), Result CHAR(1), Score INT);
+INSERT INTO Permutations VALUES 
+	('A', 'X', 3+0),
+	('B', 'X', 1+0),
+	('C', 'X', 2+0),
+	('A', 'Y', 1+3),
+	('B', 'Y', 2+3),
+	('C', 'Y', 3+3),
+	('A', 'Z', 2+6),
+	('B', 'Z', 3+6),
+	('C', 'Z', 1+6);
+SELECT SUM(Score)
+FROM (
+	SELECT Score
+	FROM Day2Input i
+	INNER JOIN Permutations p ON i.Them = p.Them AND i.Result = p.Result) as ivw5;

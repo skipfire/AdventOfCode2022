@@ -20,7 +20,7 @@ BEGIN
 END;
 GO
 CREATE TABLE Day2Rps ([Name] VARCHAR(10), [Value] INT, Letter1 CHAR(1), Letter2 CHAR(1), Beats VARCHAR(10));
-CREATE TABLE Day2 (Them VARCHAR(10), Me VARCHAR(10), MeValue INT, Winner VARCHAR(4) NULL, MeScore INT NULL);
+CREATE TABLE Day2 (Them VARCHAR(10), Me VARCHAR(10), MeValue INT, MeScore INT NULL);
 CREATE TABLE Day2Input (Them VARCHAR(10), Me VARCHAR(10));
 INSERT INTO Day2Rps VALUES ('Rock', 1, 'A', 'X', 'Scissors'), ('Paper', 2, 'B', 'Y', 'Rock'), ('Scissors', 3, 'C', 'Z', 'Paper');
 --Import data
