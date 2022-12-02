@@ -24,4 +24,5 @@ Day 21: \
 Day 22: \
 Day 23: \
 Day 24: \
-Day 25: 
+Day 25: \
+Ideas of stuff to use: C#, VB, T-SQL, Python, PHP, WSH, PowerShell, Batch, JavaScript, Android, C/C++
