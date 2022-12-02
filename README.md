@@ -1,7 +1,7 @@
 # AdventOfCode2022
 Solutions to Advent Of Code 2022 - https://adventofcode.com/2022. My goal is to use a different language or technology every day. \
 Day 1: Excel \
-Day 2: \
+Day 2: T-SQL\
 Day 3: \
 Day 4: \
 Day 5: \
@@ -25,4 +25,4 @@ Day 22: \
 Day 23: \
 Day 24: \
 Day 25: \
-Ideas of stuff to use: C#, VB, T-SQL, Python, PHP, WSH, PowerShell, Batch, JavaScript, Android, C/C++
+Ideas of languages/technologies to use (removing as I do use): C#, VB, Python, PHP, WSH, PowerShell, Batch, JavaScript, Android, C/C++
