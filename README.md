@@ -1,5 +1,5 @@
 # AdventOfCode2022
-My solutions to Advent Of Code 2022 - https://adventofcode.com/2022
+Solutions to Advent Of Code 2022 - https://adventofcode.com/2022. My goal is to use a different language or technology every day. \
 Day 1: Excel \
 Day 2: \
 Day 3: \
