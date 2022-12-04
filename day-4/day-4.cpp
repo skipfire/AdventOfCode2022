@@ -30,7 +30,8 @@ int main()
         ss << f.rdbuf();
         str = ss.str();
     }
-    int count = 0;
+    int count1 = 0;
+    int count2 = 0;
     std::vector<std::string> lines = splitString(str, '\n');
     for (auto const& line : lines) {
         std::vector<std::string> sides = splitString(line, ',');
@@ -44,14 +45,30 @@ int main()
 
         if (leftMin >= rightMin && leftMax <= rightMax) {
             std::cout << line + " - Left redundant" << std::endl;
-            count++;
+            count1++;
         }
         else if (rightMin >= leftMin && rightMax <= leftMax) {
             std::cout << line + " - Right redundant" << std::endl;
-            count++;
+            count1++;
         }
-        else
-            std::cout << line + " - All Good" << std::endl;
+        else if (leftMin >= rightMin && leftMin <= rightMax) {
+            std::cout << line + " - leftMin" << std::endl;
+            count2++;
+        }
+        else if (leftMax >= rightMin && leftMax <= rightMax) {
+            std::cout << line + " - leftMax" << std::endl;
+            count2++;
+        }
+        else if (rightMin >= leftMin && rightMin <= leftMax) {
+            std::cout << line + " - rightMin" << std::endl;
+            count2++;
+        }
+        else if (rightMax >= leftMin && rightMax <= leftMax) {
+            std::cout << line + " - rightMax" << std::endl;
+            count2++;
+        }
+
     }
-    std::cout << "Count: " + std::to_string(count) << std::endl;
+    std::cout << "Count 1: " + std::to_string(count1) << std::endl;
+    std::cout << "Count 2: " + std::to_string(count2 + count1) << std::endl;
 }
