@@ -3,7 +3,7 @@ ECHO OFF
 for /f "Tokens=* Delims=" %%x in (D:\GitHub\AdventOfCode2022\day-6\input.txt) do set content=!content!%%x
 
 call :strLen content contentlength
-SET markersize=4
+SET markersize=14
 @SET /a "l1stop=%markersize%-2"
 @SET /a "contentlength=%contentlength%-%markersize%+1"
 for /l %%i in (1, 1, %contentlength%) do (
