@@ -29,10 +29,12 @@ foreach (var tree in trees)
         //If the tree has blockers in all directions it is not visible.
         tree.IsVisible = !( blockersDown.Any() && blockersUp.Any() && blockersRight.Any() && blockersLeft.Any() );
 
+        //Get range to blocker tree each direction
         var rangeLeft = tree.x - (blockersLeft.Any() ? blockersLeft.Max(t => t.x) : 0);
         var rangeRight = (blockersRight.Any() ? blockersRight.Min(t => t.x) : maxX) - tree.x;
         var rangeUp = tree.y - (blockersUp.Any() ? blockersUp.Max(t => t.y) : 0);
         var rangeDown = (blockersDown.Any() ? blockersDown.Min(t => t.y) : maxY) - tree.y;
+        //Get the scenic score
         tree.ScenicScore = rangeLeft * rangeRight * rangeUp * rangeDown;
     }
 }
