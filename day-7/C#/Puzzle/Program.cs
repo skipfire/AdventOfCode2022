@@ -43,12 +43,6 @@ for (var i = maxDepth; i >= 0; i--)
     }
 }
 
-var orderedSizes = sizes.OrderBy(s => s.Path);
-foreach (var size in orderedSizes)
-{
-    Console.WriteLine($"{size.Size} {size.Path}");
-}
-
 Console.WriteLine("Puzzle 1: " + sizes.Where(s => s.Path.EndsWith("/") && s.Size <= 100000).Sum(s => s.Size));
 
 var totalSpace = 70000000;

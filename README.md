@@ -6,7 +6,7 @@ Day 3: PowerShell, T-SQL \
 Day 4: C++, T-SQL \
 Day 5: C# \
 Day 6: Batch File, T-SQL \
-Day 7: ?, T-SQL, C# \
+Day 7: JavaScript, T-SQL, C# \
 Day 8: \
 Day 9: \
 Day 10: \
@@ -25,4 +25,4 @@ Day 22: \
 Day 23: \
 Day 24: \
 Day 25: \
-Ideas of languages/technologies to use (removing as I do use): VB, Python, PHP, WSH, JavaScript, Java
+Ideas of languages/technologies to use (removing as I do use): VB, Python, PHP, WSH, Java
