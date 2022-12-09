@@ -8,7 +8,7 @@ Day 4: C++, T-SQL, C# \
 Day 5: C# \
 Day 6: Batch File, T-SQL, C# \
 Day 7: JavaScript, T-SQL, C# \
-Day 8: ?, C#\
+Day 8: VB.NET, C#\
 Day 9: \
 Day 10: \
 Day 11: \
@@ -26,4 +26,4 @@ Day 22: \
 Day 23: \
 Day 24: \
 Day 25: \
-Ideas of remaining languages/technologies to use: VB, Python, PHP, Java
+Ideas of remaining languages/technologies to use: Python, PHP, Java
