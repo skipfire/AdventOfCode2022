@@ -9,8 +9,8 @@ Day 5: C# \
 Day 6: Batch File, T-SQL, C# \
 Day 7: JavaScript, T-SQL, C# \
 Day 8: VB.NET, T-SQL, C# \
-Day 9: \
-Day 10: \
+Day 9: C# \
+Day 10: C# \
 Day 11: \
 Day 12: \
 Day 13: \

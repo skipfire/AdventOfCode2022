@@ -38,7 +38,6 @@ foreach (var line in lines)
 }
 
 Console.WriteLine("Puzzle 1: " + knotPositions[1].Select(t=>t.x + "," + t.y).Distinct().Count());
-//6190
 Console.WriteLine("Puzzle 2: " + knotPositions[9].Select(t => t.x + "," + t.y).Distinct().Count());
 
 void MoveFollower(Coordinate leader, int knot)
@@ -60,7 +59,7 @@ void MoveFollower(Coordinate leader, int knot)
         if (moveY != 0 && knotPosition[knot].x != leader.x)
             knotPosition[knot].x = leader.x;
         knotPositions[knot].Add(knotPosition[knot]);
-        if(knot < 9)
+        if (knot < 9)
             MoveFollower(knotPosition[knot], knot + 1);
     }
 }
