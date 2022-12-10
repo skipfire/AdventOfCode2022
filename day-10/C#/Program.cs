@@ -20,7 +20,6 @@ foreach (var line in lines)
         if (cycle % 40 == 20)
             checkCycles.Add(cycle, register * cycle);
         var position = (cycle % 40) - 1; //Cycle starts at "first cycle" but row starts at 0
-        //if(position - 1 <= register && position + 1 >= register)
         if (Math.Abs(position - register) <= 1)
             Console.Write("#");
         else
