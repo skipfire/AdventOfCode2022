@@ -1,9 +1,14 @@
 ﻿var headPositions = new List<Coordinate>();
-var tailPositions = new List<Coordinate>();
+var knotPositions = new Dictionary<int, List<Coordinate>>();
 var headPosition = new Coordinate(0, 0);
-var tailPosition = new Coordinate(0, 0);
+var knotPosition = new Dictionary<int, Coordinate>();
 headPositions.Add(headPosition);
-tailPositions.Add(tailPosition);
+for (var i = 1; i <= 9; i++)
+{
+    knotPosition.Add(i, new Coordinate(0,0));
+    knotPositions.Add(i, new List<Coordinate>());
+    knotPositions[i].Add(knotPosition[i]);
+}
 var lines = File.ReadAllLines($"D:\\GitHub\\AdventOfCode2022\\day-9\\{Environment.MachineName}.txt");
 foreach (var line in lines)
 {
@@ -12,8 +17,6 @@ foreach (var line in lines)
     var steps = Convert.ToInt32(parts[1]);
     for (var i = 0; i < steps; i++)
     {
-        var tailMoveX = 0;
-        var tailMoveY = 0;
         switch (direction)
         {
             case "U":
@@ -30,29 +33,37 @@ foreach (var line in lines)
                 break;
         }
         headPositions.Add(headPosition);
-        if (headPosition.x - tailPosition.x > 1)
-            tailMoveX = 1;
-        else if (headPosition.x - tailPosition.x < -1)
-            tailMoveX = -1;
-        else if (headPosition.y - tailPosition.y > 1)
-            tailMoveY = 1;
-        else if (headPosition.y - tailPosition.y < -1)
-            tailMoveY = -1;
-        if (tailMoveX != 0 || tailMoveY != 0)
-        {
-            tailPosition = new Coordinate(tailPosition.x + tailMoveX, tailPosition.y + tailMoveY);
-            if (tailMoveX != 0 && tailPosition.y != headPosition.y)
-                tailPosition.y = headPosition.y;
-            if (tailMoveY != 0 && tailPosition.x != headPosition.x)
-                tailPosition.x = headPosition.x;
-            tailPositions.Add(tailPosition);
-        }
+        MoveFollower(headPosition, 1);
     }
 }
 
+Console.WriteLine("Puzzle 1: " + knotPositions[1].Select(t=>t.x + "," + t.y).Distinct().Count());
+//6190
+Console.WriteLine("Puzzle 2: " + knotPositions[9].Select(t => t.x + "," + t.y).Distinct().Count());
 
-
-Console.WriteLine("Puzzle 1: " + tailPositions.Select(t=>t.x + "," + t.y).Distinct().Count());
+void MoveFollower(Coordinate leader, int knot)
+{
+    var moveX = 0;
+    var moveY = 0;
+    if (leader.x - knotPosition[knot].x > 1)
+        moveX = 1;
+    else if (leader.x - knotPosition[knot].x < -1)
+        moveX = -1;
+    else if (leader.y - knotPosition[knot].y > 1)
+        moveY = 1;
+    else if (leader.y - knotPosition[knot].y < -1)
+        moveY = -1;
+    if (moveX != 0 || moveY != 0) {
+        knotPosition[knot] = new Coordinate(knotPosition[knot].x + moveX, knotPosition[knot].y + moveY);
+        if (moveX != 0 && knotPosition[knot].y != leader.y)
+            knotPosition[knot].y = leader.y;
+        if (moveY != 0 && knotPosition[knot].x != leader.x)
+            knotPosition[knot].x = leader.x;
+        knotPositions[knot].Add(knotPosition[knot]);
+        if(knot < 9)
+            MoveFollower(knotPosition[knot], knot + 1);
+    }
+}
 
 class Coordinate
 {
