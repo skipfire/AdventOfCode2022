@@ -1,7 +1,8 @@
 ﻿var lines = File.ReadAllLines($"D:\\GitHub\\AdventOfCode2022\\day-10\\{Environment.MachineName}.txt");
 var checkCycles = new Dictionary<int, int>();
 var cycle = 0;
-var signal = 1;
+var register = 1;
+Console.WriteLine("Puzzle 2: ");
 foreach (var line in lines)
 {
     var addAmount = 0;
@@ -17,10 +18,18 @@ foreach (var line in lines)
     {
         cycle++;
         if (cycle % 40 == 20)
-            checkCycles.Add(cycle, signal * cycle);
+            checkCycles.Add(cycle, register * cycle);
+        var position = (cycle % 40) - 1; //Cycle starts at "first cycle" but row starts at 0
+        //if(position - 1 <= register && position + 1 >= register)
+        if (Math.Abs(position - register) <= 1)
+            Console.Write("#");
+        else
+            Console.Write(".");
+        if (cycle % 40 == 0)
+            Console.WriteLine();
     }
-    signal += addAmount;
+    register += addAmount;
 }
 
-Console.WriteLine("Puzzle 1: " + checkCycles.Values.Sum()); // >13200
-Console.WriteLine("Puzzle 2: " );
+Console.WriteLine();
+Console.WriteLine("Puzzle 1: " + checkCycles.Values.Sum());
